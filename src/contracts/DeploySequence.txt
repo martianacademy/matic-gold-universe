@@ -1,0 +1,14 @@
+Transfer The Fund To Wallet
+0xD79100b85aE41F2f141a53dF0983d10566a53b4b
+Deploy DFMToken.sol
+BSC: 0x57735E902Acdde3545C1d50A9595fC55361a9036
+Renounce the ownerShip
+Deploy Presale Smart Contract
+BSC: 0x8c8bCb5AeC53C0D23a3EdC9fcd95f15583f2fE5C
+Polygon: 0xc2132D05D31c914a87C6611C10748AEb04B58e8F
+Deploy Staking Smart Contract
+BSC: 0xed91C5ae1Cb0036500396BF4496De21f2b37ecB6
+Polygon: 0x916d852A1a298e14b41a23B3d2d0Ea5Ac7063aDB
+Update Staking Address in Presale Contract
+
+Approve Staking & Presale Contract with TokenOwner
