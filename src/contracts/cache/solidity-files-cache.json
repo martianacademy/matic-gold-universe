@@ -1447,8 +1447,8 @@
       ]
     },
     "/home/suru/Documents/Project/maticgold-vite/src/contracts/contracts/StakingV1Upgradable.sol": {
-      "lastModificationDate": 1673170547226,
-      "contentHash": "7018d333cb49434e27f283d292badf2d",
+      "lastModificationDate": 1673436491965,
+      "contentHash": "86786c93347c7879bb0bf7f9f977380a",
       "sourceName": "contracts/StakingV1Upgradable.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -1491,8 +1491,8 @@
       ]
     },
     "/home/suru/Documents/Project/maticgold-vite/src/contracts/contracts/ReferralV1Upgradable.sol": {
-      "lastModificationDate": 1673190335391,
-      "contentHash": "571d5428cc0c135032ea222df80a2d7c",
+      "lastModificationDate": 1673436391252,
+      "contentHash": "7815398d5e88dd36f715e416bd2133ee",
       "sourceName": "contracts/ReferralV1Upgradable.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -1571,8 +1571,8 @@
       ]
     },
     "/home/suru/Documents/Project/maticgold-vite/src/contracts/contracts/PresaleV1Upgradable.sol": {
-      "lastModificationDate": 1673190664219,
-      "contentHash": "d756d86294baef743d0ca8e700a99647",
+      "lastModificationDate": 1673436368343,
+      "contentHash": "d4c95fd75f63a18e96906199ac11f657",
       "sourceName": "contracts/PresaleV1Upgradable.sol",
       "solcConfig": {
         "version": "0.8.17",

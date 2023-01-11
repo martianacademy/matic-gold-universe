@@ -100,20 +100,20 @@ contract PresaleV1Upgradable is
 
     function initialize() external initializer {
         priceFeedOracleAddress = AggregatorV3Interface(
-            0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526
+            0xAB594600376Ec9fD91F8e885dADF0CE036862dE0
         );
 
-        USDContract = 0xbfA0e2F4b2676c62885B1033670C71cdefd975fB;
-        tokenContract = 0xaDA2dEc22F0796F9B4A538f51b6AC868D449c143;
-        rewardTokenContract = 0xaDA2dEc22F0796F9B4A538f51b6AC868D449c143;
+        USDContract = 0xc2132D05D31c914a87C6611C10748AEb04B58e8F;
+        tokenContract = 0x35d21e38200E125c9352C777b256854a65329053;
+        rewardTokenContract = 0x35d21e38200E125c9352C777b256854a65329053;
         referralContract;
         stakingContract;
 
-        tokenSeller = 0x4345492B7bf4967e8Ff7b3D0858945560391eab1;
-        rewardOwner = 0x4345492B7bf4967e8Ff7b3D0858945560391eab1;
+        tokenSeller = 0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8;
+        rewardOwner = 0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8;
 
-        pricePerUSD = 85000000000000000000;
-        rewardPerUSD = 8500000000000000000;
+        pricePerUSD = 12142857142900000000;
+        rewardPerUSD = 1214285714290000000;
 
         isPayReferral = true;
         isBuyNStake = true;

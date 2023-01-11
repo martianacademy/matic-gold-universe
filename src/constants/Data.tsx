@@ -157,13 +157,13 @@ export const BSCInfo: CurrentNetworkType = {
 };
 
 export const PolygonInfo: CurrentNetworkType = {
-  TokenAddress: "0x4194f5990704DAAc8690834d24863aAEaeFaFDa9",
-  ReferralAddress: "0x757e2C2F74dF91b9A465B730316bC16B2f3295f4",
-  PresaleAddress: "0xdb3FD7A44513cd26fF33ec5f850dfBc35dDCE813",
-  StakingAddress: "0x43dC81709f53839169Ffc6aD7Af486Be7FADfBAA",
+  TokenAddress: "0x35d21e38200E125c9352C777b256854a65329053",
+  ReferralAddress: "0x2D227FEeD1BfbB46FBF8aeF5C3d32E5da4487a6C",
+  PresaleAddress: "0x262A0D88b7acC1677d234F38cb8443b99Fb8075f",
+  StakingAddress: "0x3d68D479e08C27DE67fC7dcd74dd82e6d36e65c2",
   USDAddress: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
-  TokenOwner: "0x4a3E55b9C8e2C7278D3D8F7E0e524Be3Cd76BA8f",
-  DefaultReferrer: "0x4a3E55b9C8e2C7278D3D8F7E0e524Be3Cd76BA8f",
+  TokenOwner: "0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8",
+  DefaultReferrer: "0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8",
   NetworkName: Polygon.chainName,
   NetworkSymbol: Polygon.nativeCurrency?.symbol,
   NetworkChainId: Polygon.chainId,
@@ -171,19 +171,19 @@ export const PolygonInfo: CurrentNetworkType = {
   NetworkRPCUrl: "https://polygon-rpc.com",
   NetworkExplorerLink: Polygon.blockExplorerUrl,
   TokenInterface: new Contract(
-    "0x4194f5990704DAAc8690834d24863aAEaeFaFDa9",
+    "0x35d21e38200E125c9352C777b256854a65329053",
     TokenABI.abi
   ),
   ReferralInterface: new Contract(
-    "0x080743d861597a0CDcD742b1eED20C951F507988",
+    "0x2D227FEeD1BfbB46FBF8aeF5C3d32E5da4487a6C",
     ReferralABI.abi
   ),
   PresaleInterface: new Contract(
-    "0xdb3FD7A44513cd26fF33ec5f850dfBc35dDCE813",
+    "0x262A0D88b7acC1677d234F38cb8443b99Fb8075f",
     PresaleABI.abi
   ),
   StakingInterface: new Contract(
-    "0x43dC81709f53839169Ffc6aD7Af486Be7FADfBAA",
+    "0x3d68D479e08C27DE67fC7dcd74dd82e6d36e65c2",
     StakingABI.abi
   ),
   USDInterface: new Contract(

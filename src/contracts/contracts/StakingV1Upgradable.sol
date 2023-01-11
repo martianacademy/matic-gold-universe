@@ -41,6 +41,7 @@ contract StakingV1Upgradable is
     uint256[] private rewardRates;
 
     uint256 private minStakingValue;
+    uint256 private unStakeFees;
 
     struct Account {
         uint256 valueStaked;
@@ -73,14 +74,15 @@ contract StakingV1Upgradable is
     );
 
     function initialize() public initializer {
-        tokenSeller = 0x4345492B7bf4967e8Ff7b3D0858945560391eab1;
-        tokenContract = 0xaDA2dEc22F0796F9B4A538f51b6AC868D449c143;
-        presaleContract = 0x4A805032708399940A87D2a593Ca51cC38C79668;
-        referralContract = 0x5dCe6e00A27F962c82cd7a11cdf5ED61fB5Df5e3;
+        tokenSeller = 0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8;
+        tokenContract = 0x35d21e38200E125c9352C777b256854a65329053;
+        presaleContract = 0x262A0D88b7acC1677d234F38cb8443b99Fb8075f;
+        referralContract = 0x2D227FEeD1BfbB46FBF8aeF5C3d32E5da4487a6C;
 
         stakingDurations = [90 days, 180 days, 365 days, 545 days];
         rewardRates = [12, 15, 18, 21];
         minStakingValue = 1000000000000000000;
+        unStakeFees = 10;
 
         __Pausable_init();
         __Ownable_init();
@@ -276,6 +278,7 @@ contract StakingV1Upgradable is
     function unStake(uint256 _stakingID) external returns (bool) {
         uint256 stakingReward = _claimReward(msg.sender, _stakingID);
         uint256 unStakeValue = _unStake(msg.sender, _stakingID);
+        unStakeValue -= (unStakeValue * unStakeFees) / 100;
         _transferTokensFrom(
             tokenContract,
             tokenSeller,
@@ -473,6 +476,14 @@ contract StakingV1Upgradable is
         rewardRates = _rewardRates;
         stakingDurations = _stakingDurations;
         return true;
+    }
+
+    function getUnStakeFees() external view returns (uint256) {
+        return unStakeFees;
+    }
+
+    function setUnStakeFeesAdmin(uint256 _value) external onlyOwner {
+        unStakeFees = _value;
     }
 
     function _minStakingDuration() private view returns (uint256) {

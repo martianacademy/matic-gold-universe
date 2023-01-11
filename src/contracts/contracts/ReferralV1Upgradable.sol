@@ -58,10 +58,6 @@ contract ReferralV1Upgradable is
 
     mapping(address => Account) private accounts;
 
-    address private rewardTokenContract;
-    address private rewardTokenOwner;
-    bool private isPayRewardToken;
-
     event RegisteredReferer(address indexed referrer, address indexed referee);
 
     event RegisteredTeamAddress(
@@ -84,26 +80,16 @@ contract ReferralV1Upgradable is
         string currency
     );
 
-    event RewardTokenDistributed(
-        address indexed to,
-        uint256 indexed tokenValue,
-        address indexed rewardTokenContract
-    );
-
     function initialize() public initializer {
-        tokenSeller = 0x4345492B7bf4967e8Ff7b3D0858945560391eab1;
-        tokenContract = 0xaDA2dEc22F0796F9B4A538f51b6AC868D449c143;
-        rewardTokenContract = 0xaDA2dEc22F0796F9B4A538f51b6AC868D449c143;
-        USDContract = 0xbfA0e2F4b2676c62885B1033670C71cdefd975fB;
-        presaleContract = 0x90DE6255F7D4E0B23b19eCa6a2CA93a81328C916;
+        tokenSeller = 0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8;
+        tokenContract = 0x35d21e38200E125c9352C777b256854a65329053;
+        USDContract = 0xc2132D05D31c914a87C6611C10748AEb04B58e8F;
+        presaleContract = 0x262A0D88b7acC1677d234F38cb8443b99Fb8075f;
         stakingContract;
 
-        rewardTokenOwner = 0x4345492B7bf4967e8Ff7b3D0858945560391eab1;
-        isPayRewardToken = true;
-
-        defaultReferrer = payable(0x4345492B7bf4967e8Ff7b3D0858945560391eab1);
+        defaultReferrer = payable(0x397B8Db43aAAa23A757C52C05eb14a66a0f368d8);
         levelDecimals = 100;
-        levelRateReferral = [10];
+        levelRateReferral = [5];
         levelRateStaking = [10, 5, 3, 2, 1];
         circularReferenceLevels = 5;
 
@@ -185,14 +171,6 @@ contract ReferralV1Upgradable is
         tokenSeller = _address;
     }
 
-    function getRewardTokenOwner() external view returns (address) {
-        return rewardTokenOwner;
-    }
-
-    function setRewardTokenOwner(address _address) external onlyOwner {
-        rewardTokenOwner = _address;
-    }
-
     function getDefaultReferrer() public view returns (address) {
         return defaultReferrer;
     }
@@ -222,28 +200,6 @@ contract ReferralV1Upgradable is
     ) external onlyOwner returns (bool) {
         tokenContract = _address;
         return true;
-    }
-
-    function getRewardTokenContract()
-        external
-        view
-        returns (
-            address tokenAddress,
-            string memory tokenName,
-            uint256 tokenDecimals,
-            uint256 tokenSupply
-        )
-    {
-        tokenAddress = rewardTokenContract;
-        tokenName = IERC20_EXTENDED(rewardTokenContract).name();
-        tokenDecimals = IERC20_EXTENDED(rewardTokenContract).decimals();
-        tokenSupply = IERC20Upgradeable(rewardTokenContract).totalSupply();
-    }
-
-    function setRewardTokenContract(
-        address _tokenContractAddress
-    ) external onlyOwner {
-        rewardTokenContract = _tokenContractAddress;
     }
 
     function getUSDContract()
@@ -517,17 +473,9 @@ contract ReferralV1Upgradable is
             uint256 c = _value.mul(levelRateReferral[i]).div(levelDecimals);
             referrerAccount.totalBusinessETH += _value;
             referrerAccount.rewardPaidETH.push(c);
+            referrerAccount.rewardPaidTimeETH.push(block.timestamp);
             totalReferral += c;
             payable(referrer).transfer(c);
-            if (isPayRewardToken) {
-                _transferTokensFrom(
-                    rewardTokenContract,
-                    rewardTokenOwner,
-                    referrer,
-                    c
-                );
-                emit RewardTokenDistributed(referrer, c, rewardTokenContract);
-            }
 
             emit ReferralRewardPaid(_userAddress, referrer, c, i + 1, "ETH");
 
@@ -578,18 +526,10 @@ contract ReferralV1Upgradable is
 
             referrerAccount.totalBusinessUSD += _value;
             referrerAccount.rewardPaidUSD.push(c);
+            referrerAccount.rewardPaidTimeUSD.push(block.timestamp);
             totalReferral += c;
 
             _transferTokensFrom(USDContract, tokenSeller, referrer, c);
-            if (isPayRewardToken) {
-                _transferTokensFrom(
-                    rewardTokenContract,
-                    rewardTokenOwner,
-                    referrer,
-                    c
-                );
-                emit RewardTokenDistributed(referrer, c, rewardTokenContract);
-            }
 
             emit ReferralRewardPaid(_userAddress, referrer, c, i + 1, "USDT");
             userAccount = referrerAccount;
@@ -627,6 +567,7 @@ contract ReferralV1Upgradable is
             uint256 c = value.mul(levelRateStaking[i]).div(levelDecimals);
 
             referrerAccount.rewardPaidStaking.push(c);
+            referrerAccount.rewardPaidTimeStaking.push(block.timestamp);
             totalReferral += c;
 
             _transferTokensFrom(tokenContract, tokenSeller, referrer, c);
