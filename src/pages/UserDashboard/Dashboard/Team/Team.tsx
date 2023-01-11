@@ -28,9 +28,13 @@ export const Team = () => {
         View Your Team
       </Button>
       <VStack>
-        <Input isReadOnly value={userReferrerLink} borderRadius="xl"></Input>
+        <Input
+          isReadOnly
+          defaultValue={userReferrerLink}
+          borderRadius="xl"
+        ></Input>
         <Button borderRadius="xl" onClick={onCopy}>
-          {hasCopied ? "Copied" : "Copy Your Referral Address"}
+          {hasCopied ? "Copied" : "Copy Referral Address"}
         </Button>
       </VStack>
     </ComponentContainer>

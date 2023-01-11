@@ -5,13 +5,16 @@ import {
   TokenSymbol,
   useCurrentNetwork,
 } from "../../../../constants";
-import { useReferralUserAccount } from "../../../../hooks/referral";
+import {
+  useReferralUserAccount,
+  useUserTotalRewardPaid,
+} from "../../../../hooks/referral";
 import { ItemContainer } from "../ItemContainer";
 import { IncomeContainer } from "./IncomeContainer";
 
 export const ReferralIncomeNative = () => {
   const { account } = useEthers();
-  const userAccount = useReferralUserAccount(account);
+  const userTotalRewardPaid = useUserTotalRewardPaid(account);
   const currentNetwork = useCurrentNetwork();
 
   return (
@@ -20,8 +23,10 @@ export const ReferralIncomeNative = () => {
         currency="Native"
         logo={currentNetwork?.NetworkLogoURL}
         value={
-          userAccount?.userTotalIncomeETH
-            ? Number(formatEther(userAccount?.userTotalIncomeETH)).toFixed(3)
+          userTotalRewardPaid
+            ? Number(
+                formatEther(userTotalRewardPaid?.totalRewardPaidETH)
+              ).toFixed(3)
             : 0
         }
         symbol={currentNetwork?.NetworkSymbol}

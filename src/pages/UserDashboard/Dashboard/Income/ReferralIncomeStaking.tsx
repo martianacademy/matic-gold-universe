@@ -1,13 +1,16 @@
 import { useEthers } from "@usedapp/core";
 import { formatEther } from "ethers/lib/utils";
 import { TokenLogo, TokenSymbol } from "../../../../constants";
-import { useReferralUserAccount } from "../../../../hooks/referral";
+import {
+  useReferralUserAccount,
+  useUserTotalRewardPaid,
+} from "../../../../hooks/referral";
 import { ItemContainer } from "../ItemContainer";
 import { IncomeContainer } from "./IncomeContainer";
 
 export const ReferralIncomeStaking = () => {
   const { account } = useEthers();
-  const userAccount = useReferralUserAccount(account);
+  const userTotalRewardPaid = useUserTotalRewardPaid(account);
 
   return (
     <ItemContainer>
@@ -15,10 +18,10 @@ export const ReferralIncomeStaking = () => {
         currency="Staking"
         logo={TokenLogo}
         value={
-          userAccount?.userTotalIncomeStaking
-            ? Number(formatEther(userAccount?.userTotalIncomeStaking)).toFixed(
-                3
-              )
+          userTotalRewardPaid
+            ? Number(
+                formatEther(userTotalRewardPaid?.totalRewardPaidStaking)
+              ).toFixed(3)
             : 0
         }
         symbol={TokenSymbol}

@@ -7,7 +7,6 @@ import { StakingUI } from "./StakingUI";
 
 export const Staking = () => {
   const { account } = useEthers();
-  // @ts-ignore
   const isUserStaked = useIsStaked(account);
   return (
     <VStack w="full" minH="100vh">

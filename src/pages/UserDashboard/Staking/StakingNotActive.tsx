@@ -5,7 +5,7 @@ import { StakingUI } from "./StakingUI";
 
 export const StakingNotActive = () => {
   return (
-    <VStack w="full" minH="100vh" spacing={10}>
+    <VStack w="full" minH="100vh" spacing={10} pt={100}>
       <Center w="full">
         <Heading>Stake {TokenSymbol}</Heading>
       </Center>

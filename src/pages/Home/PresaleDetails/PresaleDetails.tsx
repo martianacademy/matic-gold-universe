@@ -215,7 +215,7 @@ export const PresaleDetails = () => {
           size="lg"
           borderRadius="2xl"
           w={300}
-          value={currentNetwork?.TokenAddress}
+          defaultValue={currentNetwork?.TokenAddress}
         ></Input>
         <HStack>
           <Button

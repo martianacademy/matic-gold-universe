@@ -1,19 +1,16 @@
 import { useCall, useEthers } from "@usedapp/core";
 import { useCurrentNetwork } from "../../constants";
 
-export const useIsStaked = ({
-  address,
-}: {
-  address?: string | undefined;
-}): boolean | undefined => {
-  const { account } = useEthers();
+export const useIsStaked = (
+  address: string | undefined
+): boolean | undefined => {
   const currentNetwork = useCurrentNetwork();
-  const { value: isUserStaking, error } =
+  const { value, error } =
     useCall(
       currentNetwork?.StakingAddress && {
         contract: currentNetwork?.StakingInterface,
         method: "isStaked",
-        args: [address ?? account],
+        args: [address],
       }
     ) ?? {};
 
@@ -22,5 +19,5 @@ export const useIsStaked = ({
     return undefined;
   }
 
-  return isUserStaking ? isUserStaking[0] : false;
+  return value ? value?.[0] : false;
 };

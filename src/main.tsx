@@ -69,7 +69,7 @@ export const config: Config = {
       },
     }),
   },
-  refresh: "everyBlock",
+  refresh: 10,
 };
 
 const router = createHashRouter(
