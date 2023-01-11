@@ -22,7 +22,7 @@ export const ComponentContainer = ({ name, icon, children }) => {
       >
         {name}
       </Button>
-      <Wrap
+      <VStack
         w="full"
         spacing={5}
         align="center"
@@ -33,7 +33,7 @@ export const ComponentContainer = ({ name, icon, children }) => {
         p={5}
       >
         {children}
-      </Wrap>
+      </VStack>
     </VStack>
   );
 };
