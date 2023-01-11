@@ -193,7 +193,7 @@ export const PresaleDetails = () => {
 
       <VStack>
         <Heading size="lg">Presale ends in</Heading>
-        <Counter timeinseconds={1680264000} size="md"></Counter>
+        <Counter timeinseconds={1678406400} size="md"></Counter>
       </VStack>
       <Button
         borderRadius="3xl"

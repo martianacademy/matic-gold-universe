@@ -1,5 +1,5 @@
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import {
   BSCTestnet,
@@ -113,11 +113,13 @@ const router = createHashRouter(
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <ColorModeScript initialColorMode="dark" />
-      <DAppProvider config={config}>
-        <RouterProvider router={router}></RouterProvider>
-      </DAppProvider>
-    </ChakraProvider>
+    <Suspense fallback={""}>
+      <ChakraProvider>
+        <ColorModeScript initialColorMode="dark" />
+        <DAppProvider config={config}>
+          <RouterProvider router={router}></RouterProvider>
+        </DAppProvider>
+      </ChakraProvider>
+    </Suspense>
   </React.StrictMode>
 );

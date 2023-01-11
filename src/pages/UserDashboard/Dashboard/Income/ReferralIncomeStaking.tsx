@@ -15,7 +15,7 @@ export const ReferralIncomeStaking = () => {
         currency="Staking"
         logo={TokenLogo}
         value={
-          userAccount
+          userAccount?.userTotalIncomeStaking
             ? Number(formatEther(userAccount?.userTotalIncomeStaking)).toFixed(
                 3
               )

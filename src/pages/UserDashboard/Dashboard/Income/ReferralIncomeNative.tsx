@@ -20,7 +20,7 @@ export const ReferralIncomeNative = () => {
         currency="Native"
         logo={currentNetwork?.NetworkLogoURL}
         value={
-          userAccount
+          userAccount?.userTotalIncomeETH
             ? Number(formatEther(userAccount?.userTotalIncomeETH)).toFixed(3)
             : 0
         }

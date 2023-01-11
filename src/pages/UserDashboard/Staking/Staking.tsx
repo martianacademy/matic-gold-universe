@@ -10,7 +10,7 @@ export const Staking = () => {
   // @ts-ignore
   const isUserStaked = useIsStaked(account);
   return (
-    <VStack w="full" minH="100vh" py={150}>
+    <VStack w="full" minH="100vh">
       {isUserStaked ? <StakingActive /> : <StakingNotActive />}
     </VStack>
   );

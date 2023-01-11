@@ -1,5 +1,7 @@
-import { Button, VStack } from "@chakra-ui/react";
+import { Button, Spinner, VStack } from "@chakra-ui/react";
+import { useEthers } from "@usedapp/core";
 import { MdDashboardCustomize } from "react-icons/md";
+import { useReferralUserAccount } from "../../../hooks/referral";
 import { Business } from "./Business";
 import { Income } from "./Income";
 import { Staking } from "./Staking";
@@ -7,7 +9,9 @@ import { Team } from "./Team";
 import { UserBalances } from "./UserBalances";
 
 export const Dashboard = () => {
-  return (
+  const { account } = useEthers();
+  const userAccountMap = useReferralUserAccount(account);
+  return userAccountMap ? (
     <VStack w="full" minH="100vh" py={100} spacing={5}>
       <Button
         variant="outline"
@@ -27,5 +31,7 @@ export const Dashboard = () => {
       <Business />
       <Income />
     </VStack>
+  ) : (
+    <Spinner />
   );
 };

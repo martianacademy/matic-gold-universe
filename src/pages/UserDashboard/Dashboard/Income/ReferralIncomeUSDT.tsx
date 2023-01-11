@@ -15,7 +15,7 @@ export const ReferralIncomeUSDT = () => {
         currency="USDT"
         logo={USDTLogo}
         value={
-          userAccount
+          userAccount?.userTotalIncomeUSD
             ? Number(formatUnits(userAccount?.userTotalIncomeUSD, 6)).toFixed(2)
             : 0
         }

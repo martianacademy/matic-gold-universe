@@ -16,11 +16,11 @@ export type UserAccountMapType = {
   teamAddress: string[];
   teamCount: number;
   rewardPaidETH: BigNumber[];
-  userTotalIncomeETH: BigNumber | number;
+  userTotalIncomeETH: BigNumber | undefined;
   rewardPaidUSD: BigNumber[];
-  userTotalIncomeUSD: BigNumber | number;
+  userTotalIncomeUSD: BigNumber | undefined;
   rewardPaidStaking: BigNumber[];
-  userTotalIncomeStaking: BigNumber | number;
+  userTotalIncomeStaking: BigNumber | undefined;
   rewardPaidTimeETH: BigNumber[];
   rewardPaidTimeUSD: BigNumber[];
   rewardPaidTimeStaking: BigNumber[];
@@ -28,19 +28,16 @@ export type UserAccountMapType = {
   totalBusinessUSD: BigNumber;
 };
 
+export type UserTotalIncomeType = {
+  rewardPaidETH: BigNumber | undefined;
+  rewardPaidUSD: BigNumber | undefined;
+  rewardPaidStaking: BigNumber | undefined;
+};
+
 export const useReferralUserAccount = (
   address: string | undefined
 ): UserAccountMapType | undefined => {
   const currentNetwork = useCurrentNetwork();
-  const [userTotalIncomeETH, setUserTotalIncomeETH] = useState<
-    BigNumber | number
-  >(0);
-  const [userTotalIncomeUSD, setUserTotalIncomeUSD] = useState<
-    BigNumber | number
-  >(0);
-  const [userTotalIncomeStaking, setUserTotalIncomeStaking] = useState<
-    BigNumber | number
-  >(0);
   const { value, error } =
     useCall(
       currentNetwork?.ReferralAddress && {
@@ -54,62 +51,18 @@ export const useReferralUserAccount = (
     return undefined;
   }
 
-  useEffect(() => {
-    let userIncomeETH = value
-      ? value?.[0].rewardPaidETH.length > 0
-        ? value?.[0].rewardPaidETH.reduce(
-            (a: BigNumber, b: BigNumber): BigNumber => {
-              const aFormatted: number = Number(formatEther(a));
-              const bFormatted: number = Number(formatEther(b));
-              const sum = aFormatted + bFormatted;
-              return parseEther(sum.toString());
-            }
-          )
-        : 0
-      : 0;
-    setUserTotalIncomeETH(userIncomeETH);
-  }, [
-    Number(formatEther(userTotalIncomeETH)),
-    JSON.stringify(value?.[0].rewardPaidETH),
-  ]);
-
-  useEffect(() => {
-    let userIncomeUSD = value
-      ? value?.[0].rewardPaidUSD.length > 0
-        ? value?.[0].rewardPaidUSD.reduce(
-            (a: BigNumber, b: BigNumber): BigNumber => {
-              const aFormatted: number = Number(formatEther(a));
-              const bFormatted: number = Number(formatEther(b));
-              const sum = aFormatted + bFormatted;
-              return parseEther(sum.toString());
-            }
-          )
-        : 0
-      : 0;
-    setUserTotalIncomeUSD(userIncomeUSD);
-  }, [
-    Number(formatEther(userTotalIncomeUSD)),
-    JSON.stringify(value?.[0].rewardPaidUSD),
-  ]);
-
-  useEffect(() => {
-    let userIncomeStaking = value
-      ? value?.[0].rewardPaidStaking.length > 0
-        ? value?.[0].rewardPaidStaking.reduce(
-            (a: BigNumber, b: BigNumber): BigNumber => {
-              const aFormatted: number = Number(formatEther(a));
-              const bFormatted: number = Number(formatEther(b));
-              const sum = aFormatted + bFormatted;
-              return parseEther(sum.toString());
-            }
-          )
-        : 0
-      : 0;
-    setUserTotalIncomeStaking(userIncomeStaking);
-  }, [
-    Number(formatEther(userTotalIncomeStaking)),
-    JSON.stringify(value?.[0].rewardPaidStaking),
-  ]);
+  const { value: valueTotalRewardPaid, error: errorTotalRewardPaid } =
+    useCall(
+      currentNetwork?.ReferralAddress && {
+        contract: currentNetwork?.ReferralInterface,
+        method: "getUserTotalRewardPaid",
+        args: [address],
+      }
+    ) ?? {};
+  if (errorTotalRewardPaid) {
+    console.error("useReferralUserAccount", errorTotalRewardPaid.message);
+    return undefined;
+  }
 
   const valueFormatted: UserAccountMapType | undefined = value
     ? {
@@ -124,11 +77,11 @@ export const useReferralUserAccount = (
         teamAddress: value?.[0].teamAddress,
         teamCount: value?.[0].teamAddress.length,
         rewardPaidETH: value?.[0].rewardPaidETH,
-        userTotalIncomeETH,
+        userTotalIncomeETH: valueTotalRewardPaid?.rewardPaidETH,
         rewardPaidUSD: value?.[0].rewardPaidUSD,
-        userTotalIncomeUSD,
+        userTotalIncomeUSD: valueTotalRewardPaid?.rewardPaidUSD,
         rewardPaidStaking: value?.[0].rewardPaidStaking,
-        userTotalIncomeStaking,
+        userTotalIncomeStaking: valueTotalRewardPaid?.rewardPaidStaking,
         rewardPaidTimeETH: value?.[0].rewardPaidTimeETH,
         rewardPaidTimeUSD: value?.[0].rewardPaidTimeUSD,
         rewardPaidTimeStaking: value?.[0].rewardPaidTimeStaking,

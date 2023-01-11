@@ -437,7 +437,7 @@ export const SwapUI = () => {
             <CurrencyContainer>
               <Button
                 borderRadius="xl"
-                bgColor="#ff0080"
+                bgColor="yellow.500"
                 color="white"
                 isDisabled={!account}
               >
@@ -612,7 +612,7 @@ export const SwapUI = () => {
                         size="lg"
                         borderWidth={25}
                         _checked={{
-                          borderColor: "#ff0080",
+                          borderColor: "yellow.500",
                         }}
                         _after={{
                           content: '"3"',
@@ -621,8 +621,8 @@ export const SwapUI = () => {
                       <VStack spacing={0}>
                         <Text fontSize="x-small">Months</Text>
                         <HStack spacing={1}>
-                          <Text fontSize="x-small" color="#ff0080">
-                            24%
+                          <Text fontSize="x-small" color="yellow.500">
+                            36%
                           </Text>
                           <Text fontSize="xx-small">APY</Text>
                         </HStack>
@@ -634,7 +634,7 @@ export const SwapUI = () => {
                         size="lg"
                         borderWidth={25}
                         _checked={{
-                          borderColor: "#ff0080",
+                          borderColor: "yellow.500",
                         }}
                         _after={{
                           content: '"6"',
@@ -644,8 +644,8 @@ export const SwapUI = () => {
                       <VStack spacing={0}>
                         <Text fontSize="x-small">Months</Text>
                         <HStack spacing={1}>
-                          <Text fontSize="x-small" color="#ff0080">
-                            36%
+                          <Text fontSize="x-small" color="yellow.500">
+                            90%
                           </Text>
                           <Text fontSize="xx-small">APY</Text>
                         </HStack>
@@ -657,7 +657,7 @@ export const SwapUI = () => {
                         size="lg"
                         borderWidth={25}
                         _checked={{
-                          borderColor: "#ff0080",
+                          borderColor: "yellow.500",
                         }}
                         _after={{
                           content: '"12"',
@@ -666,8 +666,8 @@ export const SwapUI = () => {
                       <VStack spacing={0}>
                         <Text fontSize="x-small">Months</Text>
                         <HStack spacing={1}>
-                          <Text fontSize="x-small" color="#ff0080">
-                            48%
+                          <Text fontSize="x-small" color="yellow.500">
+                            216%
                           </Text>
                           <Text fontSize="xx-small">APY</Text>
                         </HStack>
@@ -679,7 +679,7 @@ export const SwapUI = () => {
                         size="lg"
                         borderWidth={25}
                         _checked={{
-                          borderColor: "#ff0080",
+                          borderColor: "yellow.500",
                         }}
                         _after={{
                           content: '"18"',
@@ -688,8 +688,8 @@ export const SwapUI = () => {
                       <VStack spacing={0}>
                         <Text fontSize="x-small">Months</Text>
                         <HStack spacing={1}>
-                          <Text fontSize="x-small" color="#ff0080">
-                            60%
+                          <Text fontSize="x-small" color="yellow.500">
+                            378%
                           </Text>
                           <Text fontSize="xx-small">APY</Text>
                         </HStack>
@@ -706,7 +706,7 @@ export const SwapUI = () => {
             h="75px"
             borderRadius="3xl"
             boxShadow="lg"
-            bgColor="#ff0080"
+            bgColor="yellow.500"
             color="white"
             isDisabled={
               !account ||
