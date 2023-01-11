@@ -37,7 +37,7 @@ export const Roadmap2023 = () => {
           <Text fontWeight={900} p={2} borderRadius="xl" borderWidth="thin">
             {date}
           </Text>
-          <Heading size="md" textAlign="center" color="#ff0080">
+          <Heading size="md" textAlign="center" color="yellow.500">
             {heading}
           </Heading>
           <Text textAlign="center" fontSize="sm">

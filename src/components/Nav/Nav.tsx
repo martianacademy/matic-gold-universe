@@ -27,9 +27,6 @@ export const Nav = () => {
   const { active, account, deactivate } = useEthers();
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
-  const handleToggleSwitch = (e) => {
-    console.log(e);
-  };
 
   return (
     <HStack
@@ -47,12 +44,13 @@ export const Nav = () => {
         p={3}
         borderRadius="full"
         bgColor={colorMode === "dark" ? "gray.800" : "white"}
-        spacing={5}
+        justify="space-between"
       >
         <HStack onClick={() => navigate("/")} cursor="pointer">
           <Center boxSize="40px">
             <Image src={TokenLogo} boxSize={10}></Image>
           </Center>
+
           <Center
             h="25px"
             // bgColor={colorMode === "dark" ? "gray.800" : "white"}
@@ -69,8 +67,9 @@ export const Nav = () => {
             MaticGold
           </Text>
         </HStack>
-        <Spacer></Spacer>
-        <ColorModeSwitcher w={5} h={5} />
+        {/* <Spacer /> */}
+
+        {/* <ColorModeSwitcher w={5} h={5} /> */}
         {/* <Show above="sm">
           <HStack>
             <InputGroup>
@@ -89,9 +88,12 @@ export const Nav = () => {
             <Icon as={FaDiscord} cursor="pointer" w={5} h={5}></Icon>
             <ColorModeSwitcher w={5} h={5} />
           </HStack> */}
-          <Show above="md">
-            <ConnectButton borderRadius="xl" fontSize="sm"></ConnectButton>
-          </Show>
+
+          <ConnectButton
+            borderRadius="xl"
+            fontSize="sm"
+            w="max"
+          ></ConnectButton>
           <Menu boundary="scrollParent">
             <MenuButton borderWidth="thin" w={10} h={10} borderRadius="xl">
               <Icon as={HamburgerIcon}></Icon>
@@ -117,7 +119,7 @@ export const Nav = () => {
                 <Divider></Divider>
               </Center>
               <MenuItem
-                bgColor="#ff0080"
+                bgColor="yellow.500"
                 borderRadius="xl"
                 onClick={() => navigate("swap")}
               >
@@ -144,6 +146,7 @@ export const Nav = () => {
                   isChecked={colorMode === "dark"}
                   onChange={toggleColorMode}
                   id="color-mode-changer"
+                  colorScheme="purple"
                 />
               </HStack>
               {account && (

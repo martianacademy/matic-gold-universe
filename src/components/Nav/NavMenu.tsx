@@ -39,7 +39,7 @@ export const NavMenu = () => {
         <HStack w="full">
           <Text>{text}</Text>
           <Spacer />
-          <Icon as={icon} w={5} h={5} color="#ff0080"></Icon>
+          <Icon as={icon} w={5} h={5} color="yellow.500"></Icon>
         </HStack>
       </MenuItem>
     );

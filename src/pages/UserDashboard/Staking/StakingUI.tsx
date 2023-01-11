@@ -202,7 +202,7 @@ export const StakingUI = () => {
             name="tokenInput"
             size="lg"
             borderRadius="xl"
-            borderColor="#ff0080"
+            borderColor="yellow.500"
             boxShadow="md"
             onChange={handleUserInput}
             value={userInput?.tokenInput}
@@ -227,7 +227,7 @@ export const StakingUI = () => {
             </Button>
             <Button
               borderRadius="xl"
-              colorScheme="pink"
+              bgColor="yellow.500"
               value={100}
               onClick={handleMinButton}
             >
@@ -253,7 +253,7 @@ export const StakingUI = () => {
                   size="lg"
                   borderWidth={25}
                   _checked={{
-                    borderColor: "#ff0080",
+                    borderColor: "yellow.500",
                   }}
                   _after={{
                     content: '"3"',
@@ -262,7 +262,7 @@ export const StakingUI = () => {
                 <VStack spacing={0}>
                   <Text fontSize="x-small">Months</Text>
                   <HStack spacing={1}>
-                    <Text fontSize="x-small" color="#ff0080">
+                    <Text fontSize="x-small" color="yellow.500">
                       36%
                     </Text>
                     <Text fontSize="xx-small">APY</Text>
@@ -275,7 +275,7 @@ export const StakingUI = () => {
                   size="lg"
                   borderWidth={25}
                   _checked={{
-                    borderColor: "#ff0080",
+                    borderColor: "yellow.500",
                   }}
                   _after={{
                     content: '"6"',
@@ -285,7 +285,7 @@ export const StakingUI = () => {
                 <VStack spacing={0}>
                   <Text fontSize="x-small">Months</Text>
                   <HStack spacing={1}>
-                    <Text fontSize="x-small" color="#ff0080">
+                    <Text fontSize="x-small" color="yellow.500">
                       90%
                     </Text>
                     <Text fontSize="xx-small">APY</Text>
@@ -298,7 +298,7 @@ export const StakingUI = () => {
                   size="lg"
                   borderWidth={25}
                   _checked={{
-                    borderColor: "#ff0080",
+                    borderColor: "yellow.500",
                   }}
                   _after={{
                     content: '"12"',
@@ -307,7 +307,7 @@ export const StakingUI = () => {
                 <VStack spacing={0}>
                   <Text fontSize="x-small">Months</Text>
                   <HStack spacing={1}>
-                    <Text fontSize="x-small" color="#ff0080">
+                    <Text fontSize="x-small" color="yellow.500">
                       216%
                     </Text>
                     <Text fontSize="xx-small">APY</Text>
@@ -320,7 +320,7 @@ export const StakingUI = () => {
                   size="lg"
                   borderWidth={25}
                   _checked={{
-                    borderColor: "#ff0080",
+                    borderColor: "yellow.500",
                   }}
                   _after={{
                     content: '"18"',
@@ -329,7 +329,7 @@ export const StakingUI = () => {
                 <VStack spacing={0}>
                   <Text fontSize="x-small">Months</Text>
                   <HStack spacing={1}>
-                    <Text fontSize="x-small" color="#ff0080">
+                    <Text fontSize="x-small" color="yellow.500">
                       378%
                     </Text>
                     <Text fontSize="xx-small">APY</Text>
@@ -347,7 +347,7 @@ export const StakingUI = () => {
         <Button
           borderRadius="xl"
           size="lg"
-          bgColor="#ff0080"
+          bgColor="yellow.500"
           color="white"
           isDisabled={
             !isUserHaveSufficintBalance() ||

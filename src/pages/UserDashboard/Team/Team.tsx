@@ -32,8 +32,10 @@ export const Team = () => {
   return (
     <VStack w="full" minH="100vh" py={100} spacing={5}>
       <Button
+        variant="outline"
+        borderColor="yellow.500"
+        color="yellow.500"
         size="lg"
-        color="#ff0080"
         fontSize="xl"
         fontWeight={700}
         borderRadius="xl"

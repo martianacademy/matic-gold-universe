@@ -1,6 +1,7 @@
 import {
   Button,
   Center,
+  Divider,
   Heading,
   HStack,
   Icon,
@@ -19,6 +20,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { ConnectButton } from "../../../components/ConnectButton";
+import { TokenSymbol } from "../../../constants";
 
 export const ReferralReward = () => {
   const { colorMode } = useColorMode();
@@ -47,7 +49,44 @@ export const ReferralReward = () => {
           </Text>
         </HStack>
       </VStack>
-      <Icon as={FaUsers} w={32} h={32} color="orange.500"></Icon>
+      <VStack spacing={5}>
+        <HStack
+          p={5}
+          borderWidth="thick"
+          borderRadius="50px"
+          borderColor="yellow.500"
+        >
+          <VStack spacing={0} p={2} borderWidth="thick" borderRadius="3xl">
+            <Heading size="lg">{TokenSymbol}</Heading>
+            <Heading size="md">Rewards</Heading>
+            <Center w="full" p={1}>
+              <Divider />
+            </Center>
+            <Heading>10%</Heading>
+          </VStack>
+          <Center h="100px" p={3}>
+            <Divider
+              orientation="vertical"
+              borderWidth="thick"
+              borderColor="yellow.500"
+              borderRadius="full"
+            ></Divider>
+          </Center>
+          <VStack spacing={0} p={2} borderWidth="thick" borderRadius="3xl">
+            <Heading size="lg">Native</Heading>
+            <Heading size="md">Rewards</Heading>
+            <Center w="full" p={1}>
+              <Divider />
+            </Center>
+            <Heading>5%</Heading>
+          </VStack>
+        </HStack>
+        <Heading size="2xl" color="yellow.500" fontWeight={900}>
+          Reward Upto 5 Levels
+        </Heading>
+        <Heading size="md">Instant rewards in your wallet.</Heading>
+      </VStack>
+      <Icon as={FaUsers} w={32} h={32} color="yellow.500"></Icon>
       {account ? (
         <VStack>
           <Input isReadOnly value={userReferrerLink} borderRadius="xl"></Input>
@@ -57,18 +96,21 @@ export const ReferralReward = () => {
         </VStack>
       ) : (
         <VStack>
-          <Text maxW={500} px={5} textAlign="center" fontSize="lg">
+          <Heading size="lg" maxW={500} px={5} textAlign="center">
             Please connect your wallet to get your referral link.
-          </Text>
+          </Heading>
           <ConnectButton
             size="lg"
             borderRadius="2xl"
             variant="outline"
+            color="yellow.500"
+            borderColor="yellow.500"
+            borderWidth="thick"
           ></ConnectButton>
         </VStack>
       )}
 
-      <VStack>
+      {/* <VStack>
         <Heading color="#ff0080">Share now</Heading>
         <HStack>
           <Center
@@ -108,7 +150,7 @@ export const ReferralReward = () => {
             <Icon as={FaWhatsapp} w={7} h={7}></Icon>
           </Center>
         </HStack>
-      </VStack>
+      </VStack> */}
     </VStack>
   );
 };

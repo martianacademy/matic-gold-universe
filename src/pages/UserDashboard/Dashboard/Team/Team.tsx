@@ -18,6 +18,9 @@ export const Team = () => {
       <TeamCountDirect />
       <TeamCountTeam />
       <Button
+        variant="outline"
+        borderColor="yellow.500"
+        color="yellow.500"
         size="lg"
         borderRadius="xl"
         onClick={() => navigate(`team/${account}`)}

@@ -19,38 +19,6 @@ import { Roadmap2024 } from "./Roadmap2024";
 export const Roadmap = () => {
   const { colorMode } = useColorMode();
 
-  const RoadMapContainer = ({
-    icon,
-    date,
-    heading,
-    text,
-  }: {
-    icon: IconType;
-    date: string;
-    heading: string;
-    text?: string;
-  }) => {
-    return (
-      <Center w={150} borderBottomWidth="thick">
-        <VStack>
-          <Icon as={icon} w={10} h={10}></Icon>
-          <Text fontWeight={900} p={2} borderRadius="xl" borderWidth="thin">
-            {date}
-          </Text>
-          <Heading size="md" textAlign="center" color="#ff0080">
-            {heading}
-          </Heading>
-          <Text textAlign="center" fontSize="sm">
-            {text}
-          </Text>
-        </VStack>
-      </Center>
-    );
-  };
-
-  const RoadMapDivider = () => {
-    return <Center boxSize={150}></Center>;
-  };
   return (
     <VStack
       w="full"

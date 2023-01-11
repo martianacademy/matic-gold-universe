@@ -1,42 +1,26 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   ButtonProps,
-  ChakraProps,
-  HStack,
-  Icon,
-  Image,
-  Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  useClipboard,
-  useColorMode,
-  useDisclosure,
-  VStack,
-  Drawer,
+  Center,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
+  HStack,
   IconButton,
+  Image,
   Spacer,
   Stat,
   StatLabel,
   StatNumber,
-  Center,
+  Text,
+  useClipboard,
+  useColorMode,
+  VStack,
 } from "@chakra-ui/react";
 import { shortenAddress, useEthers } from "@usedapp/core";
 import { BsPower } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa";
-import { IoIosWallet } from "react-icons/io";
 import { MdContentCopy } from "react-icons/md";
 import {
   AddressZero,
@@ -44,31 +28,31 @@ import {
   TokenSymbol,
   useCurrentNetwork,
 } from "../../../constants";
-import { useFirebase } from "../../../firebase";
-import { useNativeBalance } from "../../../hooks/utils";
-import { useTokenBalance } from "../../../hooks/utils";
+
+import { useNativeBalance, useTokenBalance } from "../../../hooks/utils";
 
 export const AuthDrawer = ({
   style,
-  closeFunction,
+  onClose,
 }: {
   style?: ButtonProps;
-  closeFunction: () => void;
+  onClose: () => void;
 }) => {
   const currentNetwork = useCurrentNetwork();
   const { account, deactivate } = useEthers();
-  const { signOut }: any = useFirebase();
+
   const { colorMode } = useColorMode();
   const { onCopy, value, setValue, hasCopied } = useClipboard(account ?? "");
   const userEthBalance = useNativeBalance(account);
   const userTokenBalance = useTokenBalance(account);
 
-  const handleDeactivateWallet = async () => {
+  const handleDeactivateWallet = () => {
     try {
-      closeFunction();
-      deactivate();
-      signOut();
-      window.location.reload();
+      onClose();
+
+      setTimeout(() => {
+        deactivate();
+      }, 100);
     } catch (err) {
       console.log(err);
     }
@@ -164,12 +148,7 @@ export const AuthDrawer = ({
         </VStack>
       </DrawerBody>
       <DrawerFooter>
-        <Button
-          variant="outline"
-          mr={3}
-          onClick={closeFunction}
-          borderRadius="xl"
-        >
+        <Button variant="outline" mr={3} onClick={onClose} borderRadius="xl">
           Close
         </Button>
         <Button

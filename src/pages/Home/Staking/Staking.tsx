@@ -10,31 +10,33 @@ import {
   keyframes,
 } from "@chakra-ui/react";
 import React from "react";
-import { FaPiggyBank, FaTwitter } from "react-icons/fa";
+import { FaArrowRight, FaPiggyBank, FaTwitter } from "react-icons/fa";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const StakingAPYButtonKeyframe = keyframes`
  0% {
    
-    border-color: blue;
+    border-color: #F6E05E;
   }
-  25% {
+  100% {
    
    
-    border-color: #ff0080;
+    border-color: #ECC94B;
   }
   50% {
    
    
-    border-color: yellow;
+    border-color: #D69E2E;
   }
   100% {
    
     
-    border-color: blue;
+    border-color: #ECC94B;
   }`;
 
 export const Staking = () => {
-  const StakingAPYButtonAnimation = `${StakingAPYButtonKeyframe} infinite 5s`;
+  const StakingAPYButtonAnimation = `${StakingAPYButtonKeyframe} infinite 1s`;
+  const navigate = useNavigate();
   return (
     <VStack w="full" py={50} spacing={10}>
       <VStack>
@@ -50,7 +52,7 @@ export const Staking = () => {
           <Text textAlign="center" maxW={500} px={5}>
             Our investor friendly staking programs helps in securing the
             investment & assured more returns.
-            <Icon as={FaPiggyBank} color="#ff0080"></Icon>
+            <Icon as={FaPiggyBank} color="yellow.500"></Icon>
           </Text>
         </HStack>
       </VStack>
@@ -58,9 +60,9 @@ export const Staking = () => {
         <Center
           w={250}
           h={200}
-          borderWidth="thin"
-          borderRadius="25%"
-          borderColor="#ff0080"
+          borderWidth="thick"
+          borderRadius="50px"
+          borderColor="yellow.500"
         >
           <VStack spacing={5}>
             <HStack>
@@ -89,17 +91,14 @@ export const Staking = () => {
                 </VStack>
               </Center>
             </HStack>
-            <Button borderRadius="xl" color="white" bgColor="#ff0080">
-              Stake Now
-            </Button>
           </VStack>
         </Center>
         <Center
           w={250}
           h={200}
-          borderWidth="thin"
-          borderRadius="25%"
-          borderColor="#ff0080"
+          borderWidth="thick"
+          borderRadius="50px"
+          borderColor="yellow.500"
         >
           <VStack spacing={5}>
             <HStack>
@@ -128,17 +127,14 @@ export const Staking = () => {
                 </VStack>
               </Center>
             </HStack>
-            <Button borderRadius="xl" color="white" bgColor="#ff0080">
-              Stake Now
-            </Button>
           </VStack>
         </Center>
         <Center
           w={250}
           h={200}
-          borderWidth="thin"
-          borderRadius="25%"
-          borderColor="#ff0080"
+          borderWidth="thick"
+          borderRadius="50px"
+          borderColor="yellow.500"
         >
           <VStack spacing={5}>
             <HStack>
@@ -167,17 +163,14 @@ export const Staking = () => {
                 </VStack>
               </Center>
             </HStack>
-            <Button borderRadius="xl" color="white" bgColor="#ff0080">
-              Stake Now
-            </Button>
           </VStack>
         </Center>
         <Center
           w={250}
           h={200}
-          borderWidth="thin"
-          borderRadius="25%"
-          borderColor="#ff0080"
+          borderWidth="thick"
+          borderRadius="50px"
+          borderColor="yellow.500"
         >
           <VStack spacing={5}>
             <HStack>
@@ -206,21 +199,20 @@ export const Staking = () => {
                 </VStack>
               </Center>
             </HStack>
-            <Button borderRadius="xl" color="white" bgColor="#ff0080">
-              Stake Now
-            </Button>
           </VStack>
         </Center>
       </Wrap>
       <Button
         borderRadius="3xl"
-        bgColor="#ff0080"
+        bgColor="yellow.500"
         color="white"
         w="300px"
         h="70px"
         fontSize="lg"
+        rightIcon={<FaArrowRight />}
+        onClick={() => navigate("user-dashboard/staking")}
       >
-        Explore more...
+        Stake Now
       </Button>
     </VStack>
   );

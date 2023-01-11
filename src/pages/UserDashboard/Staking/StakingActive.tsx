@@ -16,7 +16,7 @@ export const StakingActive = () => {
       <VStack spacing={10}>
         <Button
           size="lg"
-          color="#ff0080"
+          color="yellow.500"
           fontSize="xl"
           fontWeight={700}
           borderRadius="xl"
@@ -40,7 +40,7 @@ export const StakingActive = () => {
       {/* <VStack>
         <Button
           size="lg"
-          color="#ff0080"
+          color="yellow.500"
           fontSize="xl"
           fontWeight={700}
           borderRadius="xl"
@@ -56,7 +56,7 @@ export const StakingActive = () => {
       <VStack spacing={5}>
         <Button
           size="lg"
-          color="#ff0080"
+          color="yellow.500"
           fontSize="xl"
           fontWeight={700}
           borderRadius="xl"

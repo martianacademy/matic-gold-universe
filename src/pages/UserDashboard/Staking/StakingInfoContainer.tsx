@@ -152,7 +152,7 @@ const StakingInfoContainer = ({
   return (
     <Container>
       <HStack w="full">
-        <Text fontSize="xl" fontWeight="bold" color="#ff0080">
+        <Text fontSize="xl" fontWeight="bold" color="yellow.500">
           #{stakingID}
         </Text>
       </HStack>
@@ -161,13 +161,14 @@ const StakingInfoContainer = ({
           minW="70px"
           minH="70px"
           bgColor={colorMode === "dark" ? "blackAlpha.500" : "gray.200"}
-          borderWidth="thin"
+          borderWidth="thick"
+          borderColor="yellow.500"
           // _before={{
           //   content: '""',
           //   borderRadius: "full",
           //   width: "125px",
           //   height: "125px",
-          //   border: "2px solid #ff0080",
+          //   border: "2px solid yellow.500",
           //   position: "absolute",
           //   zIndex: 0,
           //   animation: StakingAPYButtonAnimation,
@@ -177,7 +178,7 @@ const StakingInfoContainer = ({
           //   borderRadius: "full",
           //   width: "125px",
           //   height: "125px",
-          //   border: "2px solid #ff0080",
+          //   border: "2px solid yellow.500",
           //   position: "absolute",
           //   zIndex: 0,
           //   animationDelay: "1s",
@@ -185,7 +186,7 @@ const StakingInfoContainer = ({
           // }}
         >
           <VStack spacing={0}>
-            <Heading color="#ff0080" size="sm">
+            <Heading color="yellow.500" size="sm">
               {userStakingAPY}%
             </Heading>
             <Heading size="xs">APY</Heading>
@@ -193,17 +194,18 @@ const StakingInfoContainer = ({
         </Circle>
         <Center
           bgColor={colorMode === "dark" ? "blackAlpha.500" : "gray.200"}
-          borderWidth="thin"
+          borderWidth="thick"
           h={70}
           px={2}
           borderRadius="2xl"
+          borderColor="yellow.500"
         >
           <VStack spacing={0}>
             <Text fontSize="sm">Reward Claimed</Text>
             <Text fontSize="small">
               {userRewardCliamedByStakingID
                 ? userRewardCliamedByStakingID.toFixed(7)
-                : 0}
+                : 0}{" "}
               {TokenSymbol}
             </Text>
           </VStack>
@@ -211,7 +213,7 @@ const StakingInfoContainer = ({
       </HStack>
       <VStack spacing={2}>
         <Button
-          color="#ff0080"
+          color="yellow.500"
           fontWeight={700}
           borderRadius="xl"
           rightIcon={<FaPiggyBank />}
@@ -232,7 +234,7 @@ const StakingInfoContainer = ({
       </VStack>
       <VStack spacing={2}>
         <Button
-          color="#ff0080"
+          color="yellow.500"
           fontWeight={700}
           borderRadius="xl"
           rightIcon={<HiClock />}
@@ -242,6 +244,7 @@ const StakingInfoContainer = ({
         <Box
           p={2}
           borderWidth="thin"
+          borderColor="yellow.500"
           borderRadius="3xl"
           bgColor={colorMode === "dark" ? "blackAlpha.500" : "white"}
         >
@@ -250,7 +253,7 @@ const StakingInfoContainer = ({
       </VStack>
       <VStack spacing={2}>
         <Button
-          color="#ff0080"
+          color="yellow.500"
           fontWeight={700}
           borderRadius="xl"
           rightIcon={<GiPayMoney />}
@@ -260,6 +263,7 @@ const StakingInfoContainer = ({
         <Box
           p={2}
           borderWidth="thin"
+          borderColor="yellow.500"
           borderRadius="xl"
           bgColor={colorMode === "dark" ? "blackAlpha.500" : "white"}
           w="full"
@@ -271,7 +275,7 @@ const StakingInfoContainer = ({
         <HStack>
           <Button
             borderRadius="xl"
-            color="#ff0080"
+            color="yellow.500"
             fontSize="sm"
             onClick={handleClaimStakingReward}
             isLoading={
@@ -282,7 +286,8 @@ const StakingInfoContainer = ({
           </Button>
           <Button
             borderRadius="xl"
-            colorScheme="red"
+            bgColor="yellow.500"
+            color="white"
             fontSize="sm"
             onClick={handleUnStake}
             isLoading={

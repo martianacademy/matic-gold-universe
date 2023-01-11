@@ -30,7 +30,7 @@ export const Roadmap2022 = () => {
           <Text fontWeight={900} p={2} borderRadius="xl" borderWidth="thin">
             {date}
           </Text>
-          <Heading size="md" textAlign="center" color="#ff0080">
+          <Heading size="md" textAlign="center" color="yellow.500">
             {heading}
           </Heading>
           <Text textAlign="center" fontSize="sm">
@@ -52,7 +52,7 @@ export const Roadmap2022 = () => {
           <RoadMapContainer
             icon={FcIdea}
             date="Q1-2022"
-            heading="Idea Stucked"
+            heading="Idea Draw on Paper"
             text="Ideas stucked in mind & write down everything on paper."
           ></RoadMapContainer>
           <RoadMapDivider></RoadMapDivider>

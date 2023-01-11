@@ -13,10 +13,11 @@ export const ComponentContainer = ({ name, icon, children }) => {
   return (
     <VStack p={5} spacing={5}>
       <Button
+        variant="outline"
         size="lg"
         borderRadius="xl"
-        bgColor="#ff0080"
-        color="white"
+        color="yellow.500"
+        borderColor="yellow.500"
         rightIcon={icon}
       >
         {name}
@@ -28,6 +29,7 @@ export const ComponentContainer = ({ name, icon, children }) => {
         justify="center"
         borderWidth="thin"
         borderRadius="50px"
+        borderColor="yellow.500"
         p={5}
       >
         {children}

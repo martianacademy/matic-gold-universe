@@ -10,8 +10,10 @@ export const Dashboard = () => {
   return (
     <VStack w="full" minH="100vh" py={100} spacing={5}>
       <Button
+        variant="outline"
         size="lg"
-        color="#ff0080"
+        color="yellow.500"
+        borderColor="yellow.500"
         fontSize="xl"
         fontWeight={700}
         borderRadius="xl"

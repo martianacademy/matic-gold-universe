@@ -6,6 +6,7 @@ import {
   HStack,
   Text,
   useColorMode,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ export const Counter = ({
   timeinseconds: number | undefined;
   size?: "sm" | "md" | "lg" | "xl" | string;
 }) => {
+  const buttonBgColor = useColorModeValue("yellow.500", "balckAlpha.500");
   const counterSize =
     size === "sm"
       ? "50px"
@@ -99,13 +101,14 @@ export const Counter = ({
         <VStack
           w={counterSize}
           h={counterSize}
-          borderRadius={"25%"}
           fontSize={counterFontSize}
           fontWeight="bold"
           justify="center"
-          bgColor={colorMode === "dark" ? "blackAlpha.500" : "#ff0080"}
+          bgColor={buttonBgColor}
           color="white"
+          borderRadius={"25%"}
           borderWidth="thick"
+          borderColor="yellow.500"
         >
           <Text>{DaysCounter}</Text>
         </VStack>
@@ -121,9 +124,10 @@ export const Counter = ({
           fontSize={counterFontSize}
           fontWeight="bold"
           justify="center"
-          bgColor={colorMode === "dark" ? "blackAlpha.500" : "#ff0080"}
+          bgColor={buttonBgColor}
           color="white"
           borderWidth="thick"
+          borderColor="yellow.500"
         >
           <Text>{HoursCounter}</Text>
         </VStack>
@@ -139,9 +143,10 @@ export const Counter = ({
           fontSize={counterFontSize}
           fontWeight="bold"
           justify="center"
-          bgColor={colorMode === "dark" ? "blackAlpha.500" : "#ff0080"}
+          bgColor={buttonBgColor}
           color="white"
           borderWidth="thick"
+          borderColor="yellow.500"
         >
           <Text>{MinutesCounter}</Text>
         </VStack>
@@ -157,9 +162,10 @@ export const Counter = ({
           fontSize={counterFontSize}
           fontWeight="bold"
           justify="center"
-          bgColor={colorMode === "dark" ? "blackAlpha.500" : "#ff0080"}
+          bgColor={buttonBgColor}
           color="white"
           borderWidth="thick"
+          borderColor="yellow.500"
         >
           <Text>{SecondsCounter}</Text>
         </VStack>

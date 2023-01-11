@@ -7,11 +7,13 @@ import {
   HStack,
   Icon,
   Image,
+  Show,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { shortenAddress, useEthers } from "@usedapp/core";
 import { IoIosWallet } from "react-icons/io";
+import { useIsMobile } from "../../constants";
 import { useCurrentNetwork } from "../../constants/Data";
 import { AuthDrawer } from "./Auth";
 import { NoAuthDrawer } from "./NoAuth";
@@ -19,11 +21,7 @@ import { NoAuthDrawer } from "./NoAuth";
 export const ConnectButton = (props: ButtonProps) => {
   const { account } = useEthers();
   const currentNetwork = useCurrentNetwork();
-  const {
-    isOpen: isOpenModal,
-    onOpen: onopenModal,
-    onClose: onCloseModal,
-  } = useDisclosure();
+  const isMobile = useIsMobile();
   const {
     isOpen: isOpenDrawer,
     onOpen: onOpenDrawer,
@@ -33,16 +31,22 @@ export const ConnectButton = (props: ButtonProps) => {
     <Button {...props} onClick={onOpenDrawer} w="max">
       {account ? (
         <HStack w="full">
-          <Icon as={IoIosWallet} boxSize={5} color="#ff0080"></Icon>
+          <Show above="sm">
+            <Icon as={IoIosWallet} boxSize={5} color="yellow.500"></Icon>
+          </Show>
           <Text>{shortenAddress(account)}</Text>
-          <Image
-            src={currentNetwork?.NetworkLogoURL}
-            boxSize={5}
-            border="2px solid white"
-            borderRadius="full"
-            bgColor="white"
-          ></Image>
+          <Show above="sm">
+            <Image
+              src={currentNetwork?.NetworkLogoURL}
+              boxSize={5}
+              border="2px solid white"
+              borderRadius="full"
+              bgColor="white"
+            ></Image>
+          </Show>
         </HStack>
+      ) : isMobile ? (
+        "Connect"
       ) : (
         "Connect Wallet"
       )}
@@ -54,9 +58,9 @@ export const ConnectButton = (props: ButtonProps) => {
       >
         <DrawerContent borderTopRadius="25%" borderTopWidth="thick">
           {account ? (
-            <AuthDrawer closeFunction={onCloseDrawer}></AuthDrawer>
+            <AuthDrawer onClose={onCloseDrawer}></AuthDrawer>
           ) : (
-            <NoAuthDrawer onClose={onCloseDrawer}></NoAuthDrawer>
+            <NoAuthDrawer onClose={() => onCloseDrawer()}></NoAuthDrawer>
           )}
         </DrawerContent>
       </Drawer>

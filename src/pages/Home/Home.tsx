@@ -1,4 +1,11 @@
-import { Box, Image, useColorMode, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Divider,
+  Image,
+  useColorMode,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { DividerCurved } from "../../assets/DividerCurved";
 import { Header } from "./Header";
@@ -8,6 +15,7 @@ import { ReferralReward } from "./ReferralReward";
 import { Staking } from "./Staking";
 import { TokenDetails } from "./TokenDetails";
 import { Tokenomics } from "./Tokenomics";
+import { WhatIs } from "./WhatIs";
 
 export const Home = () => {
   const { colorMode } = useColorMode();
@@ -43,6 +51,14 @@ export const Home = () => {
           color={colorMode === "dark" ? "rgba(0,0,0,0.92)" : "#EDF2F7"}
         ></DividerCurved>
       </Box>
+      <WhatIs />
+      <Center p={10} w="80%">
+        <Divider
+          borderWidth="thick"
+          borderColor="yellow.500"
+          borderRadius="full"
+        ></Divider>
+      </Center>
       <Tokenomics />
       <Box w="full" transform="rotate(180deg)">
         <DividerCurved

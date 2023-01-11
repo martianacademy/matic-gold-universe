@@ -27,11 +27,11 @@ export const Roadmap2024 = () => {
     return (
       <Center w={150} borderBottomWidth="thick">
         <VStack>
-          <Icon as={icon} w={10} h={10} color="#ff0080"></Icon>
+          <Icon as={icon} w={10} h={10} color="yellow.500"></Icon>
           <Text fontWeight={900} p={2} borderRadius="xl" borderWidth="thin">
             {date}
           </Text>
-          <Heading size="md" textAlign="center" color="#ff0080">
+          <Heading size="md" textAlign="center" color="yellow.500">
             {heading}
           </Heading>
           <Text textAlign="center" fontSize="sm">
