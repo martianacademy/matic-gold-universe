@@ -41,7 +41,8 @@ export const AddressZero = "0x0000000000000000000000000000000000000000";
 
 export const SupportedChainIds = {
   [BSCTestnet.chainId]: "https://data-seed-prebsc-1-s3.binance.org:8545",
-  [Polygon.chainId]: getDefaultProvider("https://polygon-rpc.com"),
+  [Polygon.chainId]:
+    "https://frequent-muddy-bird.matic.discover.quiknode.pro/f7d723b5b17d4535a464d953fe28be410876ceeb/",
 };
 
 export const SupportedChains = [Polygon.chainId, BSCTestnet.chainId];

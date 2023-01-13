@@ -1,4 +1,9 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  ColorModeScript,
+  extendTheme,
+  ThemeConfig,
+} from "@chakra-ui/react";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -30,12 +35,15 @@ import { Team } from "./pages/UserDashboard/Team";
 import { Staking } from "./pages/UserDashboard/Staking";
 import { Analytics } from "./pages/UserDashboard/Analytics";
 import { Transactions } from "./pages/UserDashboard/Transactions";
+import { getDefaultProvider } from "ethers";
 
 export const config: Config = {
-  notifications: {
-    expirationPeriod: 5000,
+  readOnlyUrls: {
+    [BSCTestnet.chainId]: getDefaultProvider(
+      "https://data-seed-prebsc-1-s3.binance.org:8545"
+    ),
+    [Polygon.chainId]: "https://rpc-mainnet.matic.quiknode.pro",
   },
-  readOnlyUrls: SupportedChainIds,
   networks: [Polygon, BSCTestnet, Mumbai],
   connectors: {
     metamask: new MetamaskConnector(),
@@ -43,7 +51,7 @@ export const config: Config = {
     walletConnect: new WalletConnectConnector({
       rpc: {
         97: "https://data-seed-prebsc-1-s3.binance.org:8545",
-        [Polygon.chainId]: "https://polygon-rpc.com",
+        [Polygon.chainId]: "https://rpc-mainnet.matic.quiknode.pro",
       },
       qrcodeModalOptions: {
         desktopLinks: [
@@ -69,7 +77,7 @@ export const config: Config = {
       },
     }),
   },
-  refresh: 10,
+  refresh: "everyBlock",
 };
 
 const router = createHashRouter(
@@ -111,11 +119,20 @@ const router = createHashRouter(
   )
 );
 
+const chakraConfig: ThemeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({ chakraConfig });
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Suspense fallback={""}>
-      <ChakraProvider>
-        <ColorModeScript initialColorMode="dark" />
+      <ChakraProvider theme={theme}>
+        <ColorModeScript
+          initialColorMode={theme.chakraConfig.initialColorMode}
+        />
         <DAppProvider config={config}>
           <RouterProvider router={router}></RouterProvider>
         </DAppProvider>

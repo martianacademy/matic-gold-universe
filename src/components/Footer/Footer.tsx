@@ -1,6 +1,20 @@
-import { Center, Heading, HStack, VStack, Icon, Text } from "@chakra-ui/react";
+import {
+  Center,
+  Heading,
+  HStack,
+  VStack,
+  Icon,
+  Text,
+  Link,
+} from "@chakra-ui/react";
 import React from "react";
-import { FaDiscord, FaGithub, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaGithub,
+  FaTelegram,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 
 export const Footer = () => {
   return (
@@ -8,10 +22,18 @@ export const Footer = () => {
       <VStack>
         <Heading size="lg">Join the community</Heading>
         <HStack>
-          <Icon as={FaTwitter} w={7} h={7} cursor="pointer"></Icon>
-          <Icon as={FaGithub} w={7} h={7} cursor="pointer"></Icon>
+          <Link
+            href="https://twitter.com/MaticgoldUni?t=r5FgdKtr2zWZ5URBqQk-WA&s=09"
+            target="_blank"
+          >
+            <Icon as={FaTwitter} w={7} h={7} cursor="pointer"></Icon>
+          </Link>
+          <Link href="https://t.me/maticgolduniverse" target="_blank">
+            <Icon as={FaTelegram} w={7} h={7} cursor="pointer"></Icon>
+          </Link>
+          {/* <Icon as={FaGithub} w={7} h={7} cursor="pointer"></Icon>
           <Icon as={FaDiscord} w={7} h={7} cursor="pointer"></Icon>
-          <Icon as={FaYoutube} w={7} h={7} cursor="pointer"></Icon>
+          <Icon as={FaYoutube} w={7} h={7} cursor="pointer"></Icon> */}
         </HStack>
         <HStack>
           <Text fontSize="x-small"> &copy; 2022-2023</Text>

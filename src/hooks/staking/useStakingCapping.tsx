@@ -1,11 +1,12 @@
 import { useCall } from "@usedapp/core";
+import { BigNumber } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { useCurrentNetwork } from "../../constants";
 
 export type useStakingCappingType = {
-  minTokensToStake: number;
-  minDurationToStake: number;
-  maxDurationToStake: number;
+  minTokensToStake: BigNumber;
+  minDurationToStake: BigNumber;
+  maxDurationToStake: BigNumber;
 };
 
 export const useStakingCapping = (): useStakingCappingType | undefined => {
@@ -24,13 +25,13 @@ export const useStakingCapping = (): useStakingCappingType | undefined => {
     return undefined;
   }
 
-  const valueFormatted: useStakingCappingType | undefined = value
-    ? {
-        minTokensToStake: Number(formatEther(value?.minTokensToStake)),
-        minDurationToStake: Number(value?.minDurationToStake.toString()),
-        maxDurationToStake: Number(value?.maxDurationToStake.toString()),
-      }
-    : undefined;
+  // const valueFormatted: useStakingCappingType | undefined = value
+  //   ? {
+  //       minTokensToStake: Number(formatEther(value?.minTokensToStake)),
+  //       minDurationToStake: Number(value?.minDurationToStake.toString()),
+  //       maxDurationToStake: Number(value?.maxDurationToStake.toString()),
+  //     }
+  //   : undefined;
 
-  return valueFormatted;
+  return value;
 };

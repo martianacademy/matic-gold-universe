@@ -13,11 +13,8 @@ export type UserAccountMapType = {
   teamAddress: string[];
   teamCount: number;
   rewardPaidETH: BigNumber[];
-
   rewardPaidUSD: BigNumber[];
-
   rewardPaidStaking: BigNumber[];
-
   rewardPaidTimeETH: BigNumber[];
   rewardPaidTimeUSD: BigNumber[];
   rewardPaidTimeStaking: BigNumber[];

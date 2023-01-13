@@ -15,7 +15,7 @@ import { FaUsers } from "react-icons/fa";
 
 type IncomeProps = {
   currency: string;
-  value: string | number;
+  value: string | number | undefined;
   symbol: string | undefined;
   valueInUSD?: number | string;
   logo: string;

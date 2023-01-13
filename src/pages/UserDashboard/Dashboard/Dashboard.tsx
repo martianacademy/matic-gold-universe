@@ -11,7 +11,7 @@ import { UserBalances } from "./UserBalances";
 export const Dashboard = () => {
   const { account } = useEthers();
   const userAccountMap = useReferralUserAccount(account);
-  return account && userAccountMap ? (
+  return account ? (
     <VStack w="full" minH="100vh" py={100} spacing={5}>
       <Button
         variant="outline"

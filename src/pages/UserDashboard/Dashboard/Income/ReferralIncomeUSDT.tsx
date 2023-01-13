@@ -3,6 +3,7 @@ import { formatEther, formatUnits } from "ethers/lib/utils";
 import { TokenLogo, TokenSymbol, USDTLogo } from "../../../../constants";
 import {
   useReferralUserAccount,
+  UserTotalRewardsBigNumberType,
   useUserTotalRewardPaid,
 } from "../../../../hooks/referral";
 import { ItemContainer } from "../ItemContainer";
@@ -10,20 +11,20 @@ import { IncomeContainer } from "./IncomeContainer";
 
 export const ReferralIncomeUSDT = () => {
   const { account } = useEthers();
-  const userTotalRewardPaid = useUserTotalRewardPaid(account);
+  const userTotalRewardPaidBigNumber:
+    | UserTotalRewardsBigNumberType
+    | undefined = useUserTotalRewardPaid(account);
+
+  const userTotalRewardPaidUSD: number = Number(
+    formatUnits(userTotalRewardPaidBigNumber?.rewardPaidUSD ?? 0, 6)
+  );
 
   return (
     <ItemContainer>
       <IncomeContainer
         currency="USDT"
         logo={USDTLogo}
-        value={
-          userTotalRewardPaid
-            ? Number(
-                formatUnits(userTotalRewardPaid?.totalRewardPaidUSD, 6)
-              ).toFixed(2)
-            : 0
-        }
+        value={userTotalRewardPaidUSD.toFixed(3)}
         symbol={"USDT"}
       ></IncomeContainer>
     </ItemContainer>

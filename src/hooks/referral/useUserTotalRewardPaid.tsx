@@ -4,15 +4,21 @@ import { formatEther, parseEther } from "ethers/lib/utils";
 import { useEffect, useState } from "react";
 import { AddressZero, useCurrentNetwork } from "../../constants/Data";
 
-export type UserTotalIncomeType = {
-  totalRewardPaidETH: BigNumber;
-  totalRewardPaidUSD: BigNumber;
-  totalRewardPaidStaking: BigNumber;
+export type UserTotalRewardsBigNumberType = {
+  rewardPaidETH: BigNumber;
+  rewardPaidUSD: BigNumber;
+  rewardPaidStaking: BigNumber;
+};
+
+export type UserTotalRewardsNumberType = {
+  rewardPaidETH?: number;
+  rewardPaidUSD?: number;
+  rewardPaidStaking?: number;
 };
 
 export const useUserTotalRewardPaid = (
   address: string | undefined
-): UserTotalIncomeType | undefined => {
+): UserTotalRewardsBigNumberType | undefined => {
   const currentNetwork = useCurrentNetwork();
   const { value, error } =
     useCall(
@@ -23,17 +29,11 @@ export const useUserTotalRewardPaid = (
       }
     ) ?? {};
   if (error) {
-    console.error(error.message);
+    console.error("useUserTotalRewardPaid", error.message);
     return undefined;
   }
 
-  const valueFormatted: UserTotalIncomeType | undefined = value
-    ? {
-        totalRewardPaidETH: value?.rewardPaidETH,
-        totalRewardPaidStaking: value?.rewardPaidStaking,
-        totalRewardPaidUSD: value?.rewardPaidUSD,
-      }
-    : undefined;
+  console.log(value);
 
-  return valueFormatted;
+  return value;
 };

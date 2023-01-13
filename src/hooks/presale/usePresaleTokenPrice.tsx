@@ -4,7 +4,7 @@ import { formatEther } from "ethers/lib/utils";
 import React from "react";
 import { useCurrentNetwork } from "../../constants/Data";
 
-export const usePresaleTokenPrice = (): number => {
+export const usePresaleTokenPrice = (): BigNumber | undefined => {
   const currentNetwork = useCurrentNetwork();
   const { value, error } =
     useCall(
@@ -12,15 +12,12 @@ export const usePresaleTokenPrice = (): number => {
         contract: currentNetwork?.PresaleInterface,
         method: "getPricePerUSD",
         args: [],
-      },
-      { refresh: "never" }
+      }
     ) ?? {};
   if (error) {
-    console.error(error.message);
-    return 0;
+    console.error("usePresaleTokenPrice", error.message);
+    return undefined;
   }
 
-  const valueFormatted = value ? Number(formatEther(value?.[0])) : 0;
-
-  return valueFormatted;
+  return value?.[0];
 };

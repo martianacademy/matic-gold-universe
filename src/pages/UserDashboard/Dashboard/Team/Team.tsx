@@ -11,7 +11,7 @@ import { TeamCountTeam } from "./TeamCountTeam";
 export const Team = () => {
   const navigate = useNavigate();
   const { account } = useEthers();
-  const userReferrerLink = `${window.location.host}/#/swap/${account}`;
+  const userReferrerLink = `https://${window.location.host}/#/swap/${account}`;
   const { value, onCopy, hasCopied } = useClipboard(userReferrerLink);
   return (
     <ComponentContainer name="Team" icon={<FaUserShield />}>

@@ -1,5 +1,5 @@
 import { useCall } from "@usedapp/core";
-import { Contract } from "ethers";
+import { BigNumber, Contract } from "ethers";
 import { formatEther, formatUnits } from "ethers/lib/utils";
 
 export const useAllowance = (
@@ -8,7 +8,7 @@ export const useAllowance = (
   contractDecimals: number,
   ownerAddress: string | undefined,
   spenderAddress: string
-): number | undefined => {
+): BigNumber | undefined => {
   const { value, error } =
     useCall(
       contractAddress && {
@@ -26,5 +26,5 @@ export const useAllowance = (
     ? Number(formatUnits(value?.[0], contractDecimals))
     : 0;
 
-  return formattedValue;
+  return value?.[0];
 };

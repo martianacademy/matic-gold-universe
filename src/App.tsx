@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { DarkMode, VStack } from "@chakra-ui/react";
 import { useEthers } from "@usedapp/core";
 import React from "react";
 import { Outlet } from "react-router-dom";

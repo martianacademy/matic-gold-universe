@@ -15,11 +15,10 @@ export const usePresaleMinContribution = () => {
         contract: currentNetwork?.PresaleInterface,
         method: "minContribution",
         args: [],
-      },
-      { refresh: "never" }
+      }
     ) ?? {};
   if (error) {
-    console.error(error.message);
+    console.error("usePresaleMinContribution", error.message);
     return undefined;
   }
 

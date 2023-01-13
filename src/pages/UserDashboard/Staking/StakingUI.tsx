@@ -1,13 +1,10 @@
 import {
-  Box,
   Button,
-  Center,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
   HStack,
-  Icon,
   Input,
   Modal,
   ModalCloseButton,
@@ -15,11 +12,6 @@ import {
   ModalOverlay,
   Radio,
   RadioGroup,
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
   Spacer,
   Text,
   useColorMode,
@@ -27,11 +19,10 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useContractFunction, useEthers } from "@usedapp/core";
-import { parseEther } from "ethers/lib/utils";
+import { useContractFunction, useEthers, useTokenBalance } from "@usedapp/core";
+import { BigNumber } from "ethers";
+import { formatEther, parseEther } from "ethers/lib/utils";
 import { useEffect, useState } from "react";
-import { FaCalendarCheck } from "react-icons/fa";
-import { MdGraphicEq } from "react-icons/md";
 import {
   ModalApproval,
   ModalStakeTxSuccess,
@@ -45,18 +36,21 @@ import {
   useCurrentNetwork,
 } from "../../../constants";
 import { CurrentNetworkType } from "../../../constants/Data";
-import { useGetMinStakingValue } from "../../../hooks/staking/useGetMinStakingValue";
 import { useStakingCapping } from "../../../hooks/staking/useStakingCapping";
 import { useAllowance } from "../../../hooks/utils";
-import { useTokenBalance } from "../../../hooks/utils/useTokenBalance";
 
 export const StakingUI = () => {
   const toast = useToast();
   const { colorMode } = useColorMode();
   const { account } = useEthers();
   const currentNetwork: CurrentNetworkType = useCurrentNetwork();
-  // @ts-ignore
-  const userTokenBalance = useTokenBalance(account);
+
+  const userTokenBalanceBigNumber: BigNumber | undefined = useTokenBalance(
+    currentNetwork?.TokenAddress,
+    account
+  );
+
+  const userTokenBalance = Number(formatEther(userTokenBalanceBigNumber ?? 0));
   const [userInput, setUserInput] = useState({
     tokenInput: "",
     stakingDuration: `${90 * 86400}`,
@@ -69,7 +63,18 @@ export const StakingUI = () => {
     currentNetwork?.StakingAddress
   );
 
-  const stakingCapping = useStakingCapping();
+  const stakingCappingBigNumber = useStakingCapping();
+  const stakingCapping = {
+    minTokensToStake: Number(
+      formatEther(stakingCappingBigNumber?.minTokensToStake ?? 0)
+    ),
+    minDurationToStake: Number(
+      stakingCappingBigNumber?.minDurationToStake.toString()
+    ),
+    maxDurationToStake: Number(
+      stakingCappingBigNumber?.maxDurationToStake.toString()
+    ),
+  };
 
   const {
     isOpen: isOpenApprove,

@@ -94,8 +94,14 @@ export const SwapUI = () => {
     account
   );
 
-  const ethPrice: number = usePresaleETH_USDPrice();
-  const token_Price: number = usePresaleTokenPrice();
+  const ethPriceBigNumber = usePresaleETH_USDPrice();
+  const ethPrice: number = ethPriceBigNumber
+    ? Number(formatEther(ethPriceBigNumber))
+    : 0;
+  const token_PriceBigNumber = usePresaleTokenPrice();
+  const token_Price: number = token_PriceBigNumber
+    ? Number(formatEther(token_PriceBigNumber))
+    : 0;
   const minContributionPresale = usePresaleMinContribution();
 
   const hasReferrer = useReferralUserAccount(account)?.hasReferrer;
@@ -175,13 +181,15 @@ export const SwapUI = () => {
     return false;
   };
 
-  const userUSDAllowance: number | undefined = useAllowance(
+  const userUSDAllowanceBigNumber: BigNumber | undefined = useAllowance(
     currentNetwork?.USDAddress,
     currentNetwork?.USDInterface,
     6,
     account,
     currentNetwork?.PresaleAddress
   );
+
+  const userUSDAllowance = Number(formatUnits(userUSDAllowanceBigNumber ?? 0));
   const handleUserInput = (e: any) => {
     if (e.target.name === "ethInput") {
       let tokenValue: number = e.target.value * coinPrice() * token_Price;

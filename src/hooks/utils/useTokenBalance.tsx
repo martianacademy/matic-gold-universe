@@ -16,8 +16,10 @@ export const useTokenBalance = (address: string | undefined): number => {
     currentNetwork?.TokenAddress,
     address ?? account
   );
-  const userFormattedBalance: number = Number(
-    formatEther(userTokenBalance ?? 0)
-  );
+
+  const userFormattedBalance = userTokenBalance
+    ? Number(formatEther(userTokenBalance))
+    : 0;
+
   return userFormattedBalance;
 };
