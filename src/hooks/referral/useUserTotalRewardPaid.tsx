@@ -1,8 +1,6 @@
 import { useCall } from "@usedapp/core";
 import { BigNumber } from "ethers";
-import { formatEther, parseEther } from "ethers/lib/utils";
-import { useEffect, useState } from "react";
-import { AddressZero, useCurrentNetwork } from "../../constants/Data";
+import { useCurrentNetwork } from "../../constants/Data";
 
 export type UserTotalRewardsBigNumberType = {
   rewardPaidETH: BigNumber;
@@ -32,8 +30,6 @@ export const useUserTotalRewardPaid = (
     console.error("useUserTotalRewardPaid", error.message);
     return undefined;
   }
-
-  console.log(value);
 
   return value;
 };

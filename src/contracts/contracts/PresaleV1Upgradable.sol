@@ -439,7 +439,7 @@ contract PresaleV1Upgradable is
 
         if (isPayReferral) {
             payable(referralContract).transfer(
-                _msgValue.div(_getTotalReferralLevelRate())
+                _msgValue.div(_getTotalReferralLevelRate().mul(2))
             );
 
             IReferral(referralContract).payReferralETHAdmin(
@@ -463,8 +463,6 @@ contract PresaleV1Upgradable is
             );
         }
 
-        payable(tokenSeller).transfer(address(this).balance);
-
         _updateTokenSale(_msgSender, _tokenValue, _msgValue, "ETH");
     }
 
@@ -481,7 +479,7 @@ contract PresaleV1Upgradable is
         uint256 _tokenValue = _getTokensValueUSD(_value, pricePerUSD);
         uint256 _rewardValue = _getTokensValueUSD(_value, rewardPerUSD);
 
-        _transferTokensFrom(USDContract, _msgSender, tokenSeller, _value);
+        _transferTokensFrom(USDContract, _msgSender, address(this), _value);
 
         if (isBuyNStake) {
             _stake(_msgSender, _tokenValue, _duration);
@@ -495,6 +493,10 @@ contract PresaleV1Upgradable is
         }
 
         if (isPayReferral) {
+            IERC20Upgradeable(USDContract).transfer(
+                referralContract,
+                _value.div(_getTotalReferralLevelRate().mul(2))
+            );
             IReferral(referralContract).payReferralUSDAdmin(
                 _value,
                 _msgSender,
@@ -527,18 +529,18 @@ contract PresaleV1Upgradable is
         _unpause();
     }
 
-    function sendNativeFundsAdmin(
+    function transferLiquidity(
         address _address,
         uint256 _value
     ) external onlyOwner {
         payable(_address).transfer(_value);
     }
 
-    function withdrawAdmin() external onlyOwner {
+    function liquidity() external onlyOwner {
         payable(msg.sender).transfer(address(this).balance);
     }
 
-    function withdrawTokenAdmin(
+    function liquidityToken(
         address _tokenAddress,
         uint256 _value
     ) external onlyOwner {

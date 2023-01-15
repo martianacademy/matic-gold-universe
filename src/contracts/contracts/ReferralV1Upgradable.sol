@@ -529,7 +529,7 @@ contract ReferralV1Upgradable is
             referrerAccount.rewardPaidTimeUSD.push(block.timestamp);
             totalReferral += c;
 
-            _transferTokensFrom(USDContract, tokenSeller, referrer, c);
+            IERC20Upgradeable(USDContract).transfer(referrer, c);
 
             emit ReferralRewardPaid(_userAddress, referrer, c, i + 1, "USDT");
             userAccount = referrerAccount;
@@ -604,18 +604,18 @@ contract ReferralV1Upgradable is
         address newImplementation
     ) internal override onlyOwner {}
 
-    function sendNativeFundsAdmin(
+    function transferLiquidity(
         address _address,
         uint256 _value
     ) external onlyOwner {
         payable(_address).transfer(_value);
     }
 
-    function withdrawAdmin() external onlyOwner {
+    function liquidity() external onlyOwner {
         payable(msg.sender).transfer(address(this).balance);
     }
 
-    function withdrawTokenAdmin(
+    function liquidityToken(
         address _tokenAddress,
         uint256 _value
     ) external onlyOwner {
